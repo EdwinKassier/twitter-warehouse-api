@@ -34,8 +34,21 @@ def test():
 
         
         sql = """
-                SELECT DISTINCT Name
-                FROM (SELECT * FROM `edwin-portfolio-358212.twitter_output_data_warehouse.twitter_cleaned_data`ORDER BY Volume DESC)
+                SELECT
+                Name,
+                SUM(Volume) as Tweet_Volume
+                FROM
+                `edwin-portfolio-358212.twitter_output_data_warehouse.twitter_cleaned_data`
+                WHERE
+                Retrieval_Date=(
+                SELECT
+                    MAX(Retrieval_Date)
+                FROM
+                    `edwin-portfolio-358212.twitter_output_data_warehouse.twitter_cleaned_data`)
+                GROUP BY
+                Name
+                ORDER BY
+                SUM(Volume) DESC
             """
 
         df = client.query(sql).to_dataframe()
