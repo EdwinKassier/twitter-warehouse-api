@@ -8,9 +8,9 @@ from authentication import check_auth
 import os
 from google.cloud import bigquery
 
-#os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "../../credentials.json"
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "../../credentials.json"
 
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "D:\\twitter-warehouse-api\credentials.json"
+#os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "D:\\twitter-warehouse-api\credentials.json"
 
 client = bigquery.Client()
 
